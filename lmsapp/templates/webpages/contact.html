@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Contact Us • GCTW</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header splash */
+    .header-splash {
+      background: linear-gradient(rgba(0, 70, 67, 0.78), rgba(0, 50, 47, 0.85)), 
+                  url('https://images.unsplash.com/photo-1523050854058-8df90910b7b2?q=80&w=1470&auto=format&fit=crop') center/cover no-repeat;
+      border-bottom: 4px solid #c19a2e;
+    }
+
+    .navbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0, 55, 50, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 10px 30px;
+      color: white;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .tevta-logo {
+      width: 55px;
+      height: 55px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .tevta-logo i {
+      font-size: 34px;
+      color: #004d40;
+    }
+
+    .college-title h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #f9e076;
+      text-shadow: 1px 1px 4px #000;
+    }
+
+    .college-title p {
+      font-size: 0.85rem;
+      color: #e0e0e0;
+      font-weight: 300;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 8px 14px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.1);
+    }
+
+    .nav-links a:hover {
+      background: #c19a2e;
+      color: #00221f;
+      transform: translateY(-2px);
+    }
+
+    .login-btns {
+      display: flex;
+      gap: 10px;
+      margin-left: 10px;
+    }
+
+    .admin-login, .student-login {
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: white;
+      color: #00332e;
+    }
+
+    .admin-login {
+      background: #f0e6c5;
+      border: 2px solid #c19a2e;
+    }
+
+    .student-login {
+      background: #c19a2e;
+      color: #00332e;
+      border: 2px solid #ffd966;
+    }
+
+    .admin-login:hover {
+      background: #d4af37;
+    }
+
+    .student-login:hover {
+      background: #ffd966;
+    }
+
+    /* Contact page main */
+    .contact-splash {
+      background: url('https://images.unsplash.com/photo-1523240795612-9a054b0db4c5?q=80&w=1470&auto=format&fit=crop') center/cover no-repeat;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .contact-overlay {
+      background: rgba(255, 255, 250, 0.92);
+      backdrop-filter: blur(12px);
+      width: 100%;
+      max-width: 1100px;
+      border-radius: 35px;
+      padding: 40px 30px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      border: 1px solid rgba(193,154,46,0.4);
+    }
+
+    .contact-info {
+      flex: 1 1 300px;
+      background: #004d40;
+      color: white;
+      border-radius: 25px;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .contact-info h2 {
+      color: #f9e076;
+      border-bottom: 2px solid #c19a2e;
+      padding-bottom: 8px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 1.1rem;
+    }
+
+    .info-item i {
+      font-size: 1.8rem;
+      color: #c19a2e;
+      width: 35px;
+    }
+
+    .contact-form {
+      flex: 1 1 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-form h2 {
+      color: #004d40;
+      margin-bottom: 5px;
+    }
+
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 2px solid #c19a2e;
+      border-radius: 30px;
+      font-size: 1rem;
+      background: #fefdf7;
+      outline: none;
+    }
+
+    .form-group textarea {
+      border-radius: 25px;
+      resize: vertical;
+    }
+
+    .send-btn {
+      background: #c19a2e;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-weight: bold;
+      color: #00332e;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: 0.3s;
+      width: fit-content;
+    }
+
+    .send-btn:hover {
+      background: #d4af37;
+      box-shadow: 0 8px 20px rgba(193,154,46,0.4);
+    }
+
+    .footer {
+      background: #002b27;
+      color: #ddd;
+      padding: 25px 20px;
+      border-top: 4px solid #c19a2e;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+
+    .footer a {
+      color: #f9e076;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .contact-overlay {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header same as home -->
+  <div class="header-splash">
+    <nav class="navbar">
+      <div class="logo-area">
+        <div class="tevta-logo">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <div class="college-title">
+          <h2>Government College of Technology for Women</h2>
+          <p>TEVTA • Empowering Women Through Technical Education</p>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a>
+        <a href="{% url 'courses' %}"><i class="fas fa-book"></i> Courses</a>
+        <a href="{% url 'course-detail' %}"><i class="fas fa-info-circle"></i> Course Detail</a>
+        <a href="{% url 'contact' %}"><i class="fas fa-envelope"></i> Contact</a>
+        <!-- Replace the login buttons with these -->
+<div class="login-btns">
+  <button class="admin-login" onclick="window.location.href='{% url 'login_html' %}'">
+    <i class="fas fa-user-shield"></i> Admin
+  </button>
+  <button class="student-login" onclick="window.location.href='{% url 'student_login_html' %}'">
+    <i class="fas fa-user-graduate"></i> Student
+  </button>
+</div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Contact Section -->
+  <div class="contact-splash">
+    <div class="contact-overlay">
+      <div class="contact-info">
+        <h2><i class="fas fa-address-card"></i> Get In Touch</h2>
+        <div class="info-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Government College of Technology for Women Faisalabad, Punjab</span>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-phone-alt"></i>
+          <span>+92 42 1234567</span>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-envelope"></i>
+          <span>info@gctw.edu.pk</span>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-clock"></i>
+          <span>Mon - Fri : 8:00 AM - 4:00 PM</span>
+        </div>
+        <div style="margin-top: 15px;">
+          <i class="fab fa-facebook" style="font-size: 1.8rem; margin-right: 15px; color:#f9e076;"></i>
+          <i class="fab fa-twitter" style="font-size: 1.8rem; margin-right: 15px; color:#f9e076;"></i>
+          <i class="fab fa-linkedin" style="font-size: 1.8rem; color:#f9e076;"></i>
+        </div>
+      </div><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3405.3917821195487!2d73.1073462744196!3d31.403330152917345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3922680a9e559f2b%3A0x5521a93f220e1d5a!2sGovernment%20College%20of%20Technology%20for%20Women%2C%20Faisalabad!5e0!3m2!1sen!2s!4v1783651402332!5m2!1sen!2s" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <!-- <div class="contact-form">
+        <h2>📩 Send us a Message</h2>
+        <div class="form-group">
+          <input type="text" placeholder="Your Full Name" />
+        </div>
+        <div class="form-group">
+          <input type="email" placeholder="Email Address" />
+        </div>
+        <div class="form-group">
+          <input type="text" placeholder="Subject" />
+        </div>
+        <div class="form-group">
+          <textarea rows="4" placeholder="Your message..."></textarea>
+        </div>
+        <button class="send-btn"><i class="fas fa-paper-plane"></i> Send Message</button>
+      </div> -->
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div>© 2025 Government College of Technology for Women · TEVTA</div>
+    <div>
+      <a href="#"><i class="fab fa-facebook"></i></a>   
+      <a href="#"><i class="fab fa-twitter"></i></a>   
+      <a href="contact.html" target="_blank">Contact Us</a>
+    </div>
+  </footer>
+</body>
+</html>

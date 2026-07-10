@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grades • GCTW LMS</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background: #f0f4f3; display: flex; flex-direction: column; min-height: 100vh; }
+    .header-splash { background: linear-gradient(rgba(0, 70, 67, 0.82), rgba(0, 50, 47, 0.88)), url('https://images.unsplash.com/photo-1523050854058-8df90910b7b2?q=80&w=1470&auto=format&fit=crop') center/cover no-repeat; border-bottom: 4px solid #c19a2e; }
+    .navbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; background: rgba(0, 55, 50, 0.9); padding: 10px 20px; color: white; }
+    .logo-area { display: flex; align-items: center; gap: 12px; }
+    .tevta-logo { width: 50px; height: 50px; background: white; border-radius: 50%; overflow: hidden; }
+    .tevta-logo img { width: 45px; height: 45px; object-fit: contain; border-radius: 50%; }
+    .college-title h3 { font-size: 1rem; color: #f9e076; }
+    .dashboard-container { display: flex; flex: 1; }
+    .sidebar { width: 250px; background: #002b27; color: white; padding: 20px 10px; }
+    .sidebar a { color: #ddd; text-decoration: none; padding: 12px 15px; border-radius: 10px; display: block; }
+    .sidebar a:hover, .sidebar a.active { background: #c19a2e; color: #00221f; }
+    .main-content { flex: 1; padding: 25px; background: rgba(255,255,250,0.9); }
+    .page-header { color: #004d40; margin-bottom: 25px; font-size: 1.5rem; border-bottom: 3px solid #c19a2e; padding-bottom: 10px; }
+    .grades-table { width: 100%; border-collapse: collapse; background: white; border-radius: 15px; overflow: hidden; min-width: 600px; }
+    .grades-table th { background: #004d40; color: white; padding: 15px; }
+    .grades-table td { padding: 15px; border: 1px solid #ddd; text-align: center; }
+    .grade-a { color: #27ae60; font-weight: bold; }
+    .grade-b { color: #f39c12; font-weight: bold; }
+    .gpa-box { background: white; padding: 25px; border-radius: 15px; text-align: center; margin-bottom: 25px; border: 3px solid #c19a2e; }
+    .gpa-box h1 { font-size: 3rem; color: #004d40; }
+    .footer { background: #002b27; color: #ddd; padding: 15px 20px; border-top: 4px solid #c19a2e; text-align: center; }
+    @media (max-width: 768px) { .dashboard-container { flex-direction: column; } .sidebar { width: 100%; } }
+  </style>
+</head>
+<body>
+  <div class="header-splash">
+    <nav class="navbar">
+      <div class="logo-area">
+        <div class="tevta-logo"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUdWhQrlWBIMLk-03TskEiSdjyRqKP7Rym9Bv6PKmS9g&s" alt="TEVTA"></div>
+        <div class="college-title"><h3>GCTW • Student Portal</h3></div>
+      </div>
+    </nav>
+  </div>
+
+  <div class="dashboard-container">
+    <div class="sidebar">
+      <h4 style="color:#f9e076;">NAVIGATION</h4>
+      <a href="student-portal.html">Dashboard</a>
+      <a href="student-courses.html">My Courses</a>
+      <a href="student-timetable.html">Timetable</a>
+      <a href="student-assignments.html">Assignments</a>
+      <a href="student-grades.html" class="active">Grades</a>
+      <a href="student-discussions.html">Discussions</a>
+      <a href="student-settings.html">Settings</a>
+    </div>
+
+    <div class="main-content">
+      <h2 class="page-header"><i class="fas fa-star"></i> My Grades</h2>
+      
+      <div class="gpa-box">
+        <p>Current GPA</p>
+        <h1>3.8</h1>
+        <p>Semester 3 • CIT Department</p>
+      </div>
+
+      <table class="grades-table">
+        <thead>
+          <tr><th>Course Code</th><th>Course Name</th><th>Mid Term</th><th>Final Term</th><th>Assignments</th><th>Grade</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>CIT-301</td><td>Web Development</td><td>85</td><td>88</td><td>90</td><td class="grade-a">A</td></tr>
+          <tr><td>CIT-302</td><td>Database Systems</td><td>78</td><td>82</td><td>85</td><td class="grade-b">B+</td></tr>
+          <tr><td>CIT-303</td><td>Computer Networks</td><td>72</td><td>75</td><td>80</td><td class="grade-b">B</td></tr>
+          <tr><td>CIT-304</td><td>Cyber Security</td><td>90</td><td>92</td><td>88</td><td class="grade-a">A</td></tr>
+          <tr><td>CIT-101</td><td>Programming Fundamentals</td><td>95</td><td>93</td><td>97</td><td class="grade-a">A+</td></tr>
+          <tr><td>CIT-401</td><td>Software Engineering</td><td>80</td><td>85</td><td>82</td><td class="grade-b">B+</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer class="footer"><p>© 2025 Government College of Technology for Women · TEVTA</p></footer>
+</body>
+</html>

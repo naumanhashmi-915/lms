@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Sign Up • GCTW LMS</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #f0f4f3;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .header-splash {
+      background: linear-gradient(rgba(0, 70, 67, 0.82), rgba(0, 50, 47, 0.88)), 
+                  url('https://images.unsplash.com/photo-1523050854058-8df90910b7b2?q=80&w=1470&auto=format&fit=crop') center/cover no-repeat;
+      border-bottom: 4px solid #c19a2e;
+    }
+
+    .navbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0, 55, 50, 0.9);
+      padding: 10px 20px;
+      color: white;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .tevta-logo {
+      width: 50px;
+      height: 50px;
+      background: white;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .tevta-logo img {
+      width: 45px;
+      height: 45px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .college-title h3 {
+      font-size: 1rem;
+      color: #f9e076;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .nav-links a:hover {
+      background: #c19a2e;
+      color: #00221f;
+    }
+
+    .signup-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: url('https://images.unsplash.com/photo-1523240795612-9a054b0db4c5?q=80&w=1470&auto=format&fit=crop') center/cover no-repeat;
+      padding: 40px 20px;
+    }
+
+    .signup-box {
+      background: rgba(255, 255, 250, 0.95);
+      backdrop-filter: blur(15px);
+      border-radius: 30px;
+      padding: 40px 30px;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+      border: 2px solid rgba(193,154,46,0.5);
+    }
+
+    .signup-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .signup-header .icon-circle {
+      width: 70px;
+      height: 70px;
+      background: #004d40;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+      border: 4px solid #c19a2e;
+    }
+
+    .signup-header .icon-circle i {
+      font-size: 2rem;
+      color: #f9e076;
+    }
+
+    .signup-header h2 {
+      color: #004d40;
+      font-size: 1.5rem;
+    }
+
+    .role-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .role-tab {
+      flex: 1;
+      padding: 12px;
+      border: 2px solid #c19a2e;
+      border-radius: 25px;
+      background: transparent;
+      color: #004d40;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .role-tab.active {
+      background: #c19a2e;
+      color: #00221f;
+      box-shadow: 0 5px 15px rgba(193,154,46,0.4);
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      color: #004d40;
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+    }
+
+    .form-group .input-icon {
+      position: relative;
+    }
+
+    .form-group .input-icon i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #004d40;
+      font-size: 1rem;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px 15px 12px 45px;
+      border: 2px solid #c19a2e;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      background: #fefdf7;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    .form-group select {
+      padding-left: 45px;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: #004d40;
+      box-shadow: 0 0 0 3px rgba(0,77,64,0.1);
+    }
+
+    .btn-signup {
+      width: 100%;
+      padding: 14px;
+      background: #004d40;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .btn-signup:hover {
+      background: #c19a2e;
+      color: #00221f;
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .login-link a {
+      color: #004d40;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .login-link a:hover {
+      color: #c19a2e;
+    }
+
+    .success-message {
+      background: #e8f5e9;
+      color: #2e7d32;
+      padding: 15px;
+      border-radius: 15px;
+      text-align: center;
+      display: none;
+    }
+
+    .success-message.show {
+      display: block;
+    }
+
+    .footer {
+      background: #002b27;
+      color: #ddd;
+      padding: 15px 20px;
+      border-top: 4px solid #c19a2e;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 500px) {
+      .signup-box {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header-splash">
+    <nav class="navbar">
+      <div class="logo-area">
+        <div class="tevta-logo">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUdWhQrlWBIMLk-03TskEiSdjyRqKP7Rym9Bv6PKmS9g&s" alt="TEVTA">
+        </div>
+        <div class="college-title">
+          <h3>GCTW • LMS Portal</h3>
+          <p>TEVTA Technical Education</p>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a>
+        <a href="{% url 'courses' %}"><i class="fas fa-book"></i> Courses</a>
+        <a href="{% url 'contact' %}"><i class="fas fa-envelope"></i> Contact</a>
+      </div>
+    </nav>
+  </div>
+
+  <div class="signup-container">
+    <div class="signup-box">
+      <div class="signup-header">
+        <div class="icon-circle">
+          <i class="fas fa-user-plus"></i>
+        </div>
+        <h2>Create Account</h2>
+        <p style="color:#666;">Join GCTW Learning Management System</p>
+      </div>
+
+      <div class="role-tabs">
+        <button class="role-tab active" id="studentTab" onclick="switchSignupRole('student')">
+          <i class="fas fa-user-graduate"></i> Student
+        </button>
+        <button class="role-tab" id="adminTab" onclick="switchSignupRole('admin')">
+          <i class="fas fa-user-shield"></i> Admin
+        </button>
+      </div>
+
+      <div class="success-message" id="successMessage">
+        <i class="fas fa-check-circle"></i> Account created successfully! <a href="login.html">Login here</a>
+      </div>
+
+      <form id="signupForm" onsubmit="handleSignup(event)">
+        <div class="form-group">
+          <label>Full Name</label>
+          <div class="input-icon">
+            <i class="fas fa-user"></i>
+            <input type="text" id="fullName" placeholder="Enter full name" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Username</label>
+          <div class="input-icon">
+            <i class="fas fa-id-badge"></i>
+            <input type="text" id="signupUsername" placeholder="Choose username" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <div class="input-icon">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="email" placeholder="Enter email address" required>
+          </div>
+        </div>
+
+        <div class="form-group" id="rollNumberGroup">
+          <label>Roll Number</label>
+          <div class="input-icon">
+            <i class="fas fa-id-card"></i>
+            <input type="text" id="rollNumber" placeholder="e.g., GCTW-101">
+          </div>
+        </div>
+
+        <div class="form-group" id="departmentGroup">
+          <label>Department</label>
+          <div class="input-icon">
+            <i class="fas fa-building"></i>
+            <select id="department">
+              <option value="">Select Department</option>
+              <option value="CIT">CIT - Computer Information Technology</option>
+              <option value="DDM">DDM - Dress Designing and Making</option>
+              <option value="OMA">Office Management Assistant</option>
+              <option value="FD">Fashion Designing</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group" id="adminCodeGroup" style="display:none;">
+          <label>Admin Registration Code</label>
+          <div class="input-icon">
+            <i class="fas fa-key"></i>
+            <input type="password" id="adminCode" placeholder="Enter admin code">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <div class="input-icon">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="signupPassword" placeholder="Create password" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Confirm Password</label>
+          <div class="input-icon">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-signup">
+          <i class="fas fa-user-plus"></i> Create Account
+        </button>
+      </form>
+
+      <div class="login-link">
+        Already have an account? <a href="login.html">Login</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>© 2025 Government College of Technology for Women · TEVTA</p>
+  </footer>
+
+  <script>
+    let signupRole = 'student';
+
+    function switchSignupRole(role) {
+      signupRole = role;
+      
+      document.getElementById('studentTab').classList.remove('active');
+      document.getElementById('adminTab').classList.remove('active');
+      
+      if (role === 'student') {
+        document.getElementById('studentTab').classList.add('active');
+        document.getElementById('rollNumberGroup').style.display = 'block';
+        document.getElementById('departmentGroup').style.display = 'block';
+        document.getElementById('adminCodeGroup').style.display = 'none';
+        document.getElementById('rollNumber').required = true;
+        document.getElementById('department').required = true;
+      } else {
+        document.getElementById('adminTab').classList.add('active');
+        document.getElementById('rollNumberGroup').style.display = 'none';
+        document.getElementById('departmentGroup').style.display = 'none';
+        document.getElementById('adminCodeGroup').style.display = 'block';
+        document.getElementById('rollNumber').required = false;
+        document.getElementById('department').required = false;
+      }
+    }
+
+    function handleSignup(event) {
+      event.preventDefault();
+      
+      const password = document.getElementById('signupPassword').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      
+      if (password !== confirmPassword) {
+        alert('Passwords do not match!');
+        return;
+      }
+      
+      if (password.length < 6) {
+        alert('Password must be at least 6 characters!');
+        return;
+      }
+      
+      // Simulate successful signup
+      document.getElementById('signupForm').style.display = 'none';
+      document.getElementById('successMessage').classList.add('show');
+      
+      setTimeout(() => {
+        window.location.href = 'login.html';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

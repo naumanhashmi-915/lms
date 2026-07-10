@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Login • GCTW LMS</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #f0f4f3;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .header-splash {
+      background: linear-gradient(rgba(0, 70, 67, 0.82), rgba(0, 50, 47, 0.88)), 
+                  url('https://images.unsplash.com/photo-1523050854058-8df90910b7b2?q=80&w=1470&auto=format&fit=crop') center/cover no-repeat;
+      border-bottom: 4px solid #c19a2e;
+    }
+
+    .navbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0, 55, 50, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 10px 20px;
+      color: white;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .tevta-logo {
+      width: 50px;
+      height: 50px;
+      background: white;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tevta-logo img {
+      width: 45px;
+      height: 45px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .college-title h3 {
+      font-size: 1rem;
+      color: #f9e076;
+    }
+
+    .college-title p {
+      font-size: 0.7rem;
+      color: #ddd;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .nav-links a:hover {
+      background: #c19a2e;
+      color: #00221f;
+    }
+
+    /* Login Container */
+    .login-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: url('https://images.unsplash.com/photo-1523240795612-9a054b0db4c5?q=80&w=1470&auto=format&fit=crop') center/cover no-repeat;
+      padding: 40px 20px;
+    }
+
+    .login-box {
+      background: rgba(255, 255, 250, 0.95);
+      backdrop-filter: blur(15px);
+      border-radius: 30px;
+      padding: 40px 30px;
+      width: 100%;
+      max-width: 450px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+      border: 2px solid rgba(193,154,46,0.5);
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .login-header .icon-circle {
+      width: 70px;
+      height: 70px;
+      background: #004d40;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+      border: 4px solid #c19a2e;
+    }
+
+    .login-header .icon-circle i {
+      font-size: 2rem;
+      color: #f9e076;
+    }
+
+    .login-header h2 {
+      color: #004d40;
+      font-size: 1.5rem;
+      margin-bottom: 5px;
+    }
+
+    .login-header p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .role-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .role-tab {
+      flex: 1;
+      padding: 12px;
+      border: 2px solid #c19a2e;
+      border-radius: 25px;
+      background: transparent;
+      color: #004d40;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .role-tab.active {
+      background: #c19a2e;
+      color: #00221f;
+      border-color: #c19a2e;
+      box-shadow: 0 5px 15px rgba(193,154,46,0.4);
+    }
+
+    .role-tab:hover {
+      background: #f9e076;
+      border-color: #f9e076;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      color: #004d40;
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+    }
+
+    .form-group .input-icon {
+      position: relative;
+    }
+
+    .form-group .input-icon i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #004d40;
+      font-size: 1rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 15px 12px 45px;
+      border: 2px solid #c19a2e;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      background: #fefdf7;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    .form-group input:focus {
+      border-color: #004d40;
+      box-shadow: 0 0 0 3px rgba(0,77,64,0.1);
+    }
+
+    .remember-forgot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      font-size: 0.85rem;
+    }
+
+    .remember-forgot label {
+      color: #555;
+      cursor: pointer;
+    }
+
+    .remember-forgot a {
+      color: #004d40;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .remember-forgot a:hover {
+      color: #c19a2e;
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 14px;
+      background: #004d40;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-login:hover {
+      background: #c19a2e;
+      color: #00221f;
+      box-shadow: 0 8px 20px rgba(193,154,46,0.4);
+    }
+
+    .error-message {
+      background: #fce4ec;
+      color: #c62828;
+      padding: 10px 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      font-size: 0.85rem;
+      display: none;
+      text-align: center;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    .signup-link {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .signup-link a {
+      color: #004d40;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .signup-link a:hover {
+      color: #c19a2e;
+    }
+
+    .demo-credentials {
+      background: #e8f5e9;
+      padding: 15px;
+      border-radius: 15px;
+      margin-top: 20px;
+      font-size: 0.8rem;
+      color: #2e7d32;
+    }
+
+    .demo-credentials strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .footer {
+      background: #002b27;
+      color: #ddd;
+      padding: 15px 20px;
+      border-top: 4px solid #c19a2e;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 500px) {
+      .login-box {
+        padding: 30px 20px;
+      }
+      .role-tab {
+        font-size: 0.8rem;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header-splash">
+    <nav class="navbar">
+      <div class="logo-area">
+        <div class="tevta-logo">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUdWhQrlWBIMLk-03TskEiSdjyRqKP7Rym9Bv6PKmS9g&s" alt="TEVTA">
+        </div>
+        <div class="college-title">
+          <h3>GCTW • LMS Portal</h3>
+          <p>TEVTA Technical Education</p>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a>
+        <a href="{% url 'courses' %}"><i class="fas fa-book"></i> Courses</a>
+        <a href="{% url 'contact' %}"><i class="fas fa-envelope"></i> Contact</a>
+      </div>
+    </nav>
+  </div>
+
+  <div class="login-container">
+    <div class="login-box">
+      <div class="login-header">
+        <div class="icon-circle">
+          <i class="fas fa-user-lock"></i>
+        </div>
+        <h2 id="loginTitle">Student Login</h2>
+        <p>Enter your credentials to access portal</p>
+      </div>
+
+      <div class="role-tabs">
+        <button class="role-tab active" id="studentTab" onclick="switchRole('student')">
+          <i class="fas fa-user-graduate"></i> Student
+        </button>
+        <button class="role-tab" id="adminTab" onclick="switchRole('admin')">
+          <i class="fas fa-user-shield"></i> Admin
+        </button>
+      </div>
+
+      <div class="error-message" id="errorMessage">
+        <i class="fas fa-exclamation-circle"></i> <span id="errorText"></span>
+      </div>
+
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label>Username</label>
+          <div class="input-icon">
+            <i class="fas fa-user"></i>
+            <input type="text" id="username" placeholder="Enter username" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <div class="input-icon">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="password" placeholder="Enter password" required>
+          </div>
+        </div>
+
+        <div class="remember-forgot">
+          <label>
+            <input type="checkbox" id="rememberMe"> Remember me
+          </label>
+          <a href="#">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="btn-login">
+          <i class="fas fa-sign-in-alt"></i> Login
+        </button>
+      </form>
+
+      <div class="signup-link">
+        Don't have an account? <a href="signup.html">Sign Up</a>
+      </div>
+
+      <div class="demo-credentials" id="demoCredentials">
+        <strong><i class="fas fa-info-circle"></i> Demo Credentials:</strong>
+        <span id="demoText">Username: <b>ayesha</b> | Password: <b>student123</b></span>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>© 2025 Government College of Technology for Women · TEVTA</p>
+  </footer>
+
+  <script>
+    let currentRole = 'student';
+
+    // Demo credentials
+    const credentials = {
+      student: {
+        username: 'ayesha',
+        password: 'student123',
+        redirect: 'student-portal.html'
+      },
+      admin: {
+        username: 'admin',
+        password: 'admin123',
+        redirect: 'admin-portal.html'
+      }
+    };
+
+    function switchRole(role) {
+      currentRole = role;
+      
+      // Update tabs
+      document.getElementById('studentTab').classList.remove('active');
+      document.getElementById('adminTab').classList.remove('active');
+      
+      if (role === 'student') {
+        document.getElementById('studentTab').classList.add('active');
+        document.getElementById('loginTitle').textContent = 'Student Login';
+        document.getElementById('demoText').innerHTML = 'Username: <b>ayesha</b> | Password: <b>student123</b>';
+      } else {
+        document.getElementById('adminTab').classList.add('active');
+        document.getElementById('loginTitle').textContent = 'Admin Login';
+        document.getElementById('demoText').innerHTML = 'Username: <b>admin</b> | Password: <b>admin123</b>';
+      }
+      
+      // Clear form and error
+      document.getElementById('username').value = '';
+      document.getElementById('password').value = '';
+      hideError();
+    }
+
+    function showError(message) {
+      document.getElementById('errorMessage').classList.add('show');
+      document.getElementById('errorText').textContent = message;
+    }
+
+    function hideError() {
+      document.getElementById('errorMessage').classList.remove('show');
+    }
+
+    function handleLogin(event) {
+      event.preventDefault();
+      
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      
+      // Basic validation
+      if (!username || !password) {
+        showError('Please enter both username and password');
+        return;
+      }
+      
+      // Check credentials based on role
+      const roleCreds = credentials[currentRole];
+      
+      if (username === roleCreds.username && password === roleCreds.password) {
+        // Successful login
+        hideError();
+        
+        // Store login info in session storage
+        sessionStorage.setItem('loggedIn', 'true');
+        sessionStorage.setItem('userRole', currentRole);
+        sessionStorage.setItem('username', username);
+        
+        // Show success message
+        alert('✅ Login successful! Redirecting to ' + currentRole + ' portal...');
+        
+        // Redirect to respective portal
+        window.location.href = roleCreds.redirect;
+      } else {
+        // Failed login
+        showError('Invalid username or password. Please try again.');
+        
+        // Shake effect on login box
+        const loginBox = document.querySelector('.login-box');
+        loginBox.style.animation = 'shake 0.5s';
+        setTimeout(() => {
+          loginBox.style.animation = '';
+        }, 500);
+      }
+    }
+
+    // Check if already logged in
+    window.addEventListener('DOMContentLoaded', function() {
+      const loggedIn = sessionStorage.getItem('loggedIn');
+      const userRole = sessionStorage.getItem('userRole');
+      
+      if (loggedIn === 'true') {
+        if (userRole === 'admin') {
+          window.location.href = 'admin-portal.html';
+        } else if (userRole === 'student') {
+          window.location.href = 'student-portal.html';
+        }
+      }
+    });
+
+    // Add shake animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+        20%, 40%, 60%, 80% { transform: translateX(5px); }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
